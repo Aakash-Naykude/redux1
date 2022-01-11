@@ -1,10 +1,11 @@
 import "./App.css";
-import { Todo } from "./Componants/Todo";
-import store from "./Redux/Store";
+import { TodoInput } from "./Componants/Todoinput";
+
 function App() {
   return (
     <div className="App">
-      <Todo />
+      <h1>Todo List</h1>
+      <TodoInput />
     </div>
   );
 }
