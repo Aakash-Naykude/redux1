@@ -1,0 +1,7 @@
+.cont > div{
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    justify-content: center;
+}

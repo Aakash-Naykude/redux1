@@ -6,6 +6,8 @@ import {
   GET_TODO_ERROR,
   GET_TODO_LOADING,
   GET_TODO_SUCCESS,
+  REMOVE_TODO,
+  TOGGLE_TODO,
 } from "./actiontype";
 const init = {
   loading: false,
@@ -61,6 +63,18 @@ export const reducer = (state = init, { type, payload }) => {
         error: true,
       };
 
+    case REMOVE_TODO:
+      const newtodo = state.todos.filter((e) => e.id !== payload);
+      return {
+        ...state,
+        todo: newtodo,
+      };
+
+    case TOGGLE_TODO:
+      console.log(state);
+      return state.todos.map((todo) =>
+        todo.id === payload ? { ...todo, completed: !todo.completed } : todo
+      );
     default:
       return state;
   }

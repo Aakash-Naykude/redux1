@@ -6,11 +6,13 @@ import {
   getTodoError,
   getTodoLoading,
   getTodoSuccess,
+  removeTodo,
+  toggleTodoSucces,
 } from "../Redux/actions";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import "./todo.css";
 export const TodoInput = () => {
   const [text, setText] = useState("");
   const { loading, todos, error } = useSelector((state) => ({
@@ -56,8 +58,6 @@ export const TodoInput = () => {
   };
 
   const handleDelete = async (id) => {
-    // setList(list.filter((list) => list.id !== id));
-
     let resp = await fetch(`http://localhost:3001/todos/${id}`, {
       method: "DELETE",
       headers: {
@@ -65,8 +65,22 @@ export const TodoInput = () => {
       },
     });
     getTodoLists();
+    dispatch(removeTodo(id));
   };
 
+  const handleToggle = (id, title, status) => {
+    // let resp = await fetch(`http://localhost:3001/todos/${id}`, {
+    //   method: "DELETE",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    
+    status = !status;
+    console.log(status);
+    setText(title);
+    getTodoLists();
+  };
   return loading ? (
     <h1>Loading</h1>
   ) : error ? (
@@ -79,13 +93,17 @@ export const TodoInput = () => {
         onChange={(e) => setText(e.target.value)}
       />
       <button onClick={handleData}>ADD TODO</button>
-      {todos.map((i) => (
-        <div>
-          {i.title} -{i.status ? "Done" : "Not-Done"}
-          <button onClick={()=>handleDelete(i.id)} >Delete</button>
-          <button>Edit</button>
-        </div>
-      ))}
+      <div className="cont">
+        {todos.map((i) => (
+          <div key={i.id}>
+            {i.title} -{i.status ? "Done" : "Not-Done"}
+            <button onClick={() => handleDelete(i.id)}>Delete</button>
+            <button onClick={() => handleToggle(i.id, i.title, i.status)}>
+              Edit
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

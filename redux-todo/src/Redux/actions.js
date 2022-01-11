@@ -1,4 +1,14 @@
-import { ADD_TODO, ADD_TODO_ERROR, ADD_TODO_LOADING, ADD_TODO_SUCCESS, GET_TODO_ERROR, GET_TODO_LOADING, GET_TODO_SUCCESS, REMOVE_TODO } from "./actiontype";
+import {
+  ADD_TODO,
+  ADD_TODO_ERROR,
+  ADD_TODO_LOADING,
+  ADD_TODO_SUCCESS,
+  GET_TODO_ERROR,
+  GET_TODO_LOADING,
+  GET_TODO_SUCCESS,
+  REMOVE_TODO,
+  TOGGLE_TODO,
+} from "./actiontype";
 
 export const addTodo = (data) => {
   return {
@@ -27,11 +37,9 @@ export const addTodoError = (err) => {
 export const removeTodo = (id) => {
   return {
     type: REMOVE_TODO,
-    payload: id,
+    id,
   };
 };
-
-
 
 export const getTodoLoading = () => {
   return {
@@ -49,5 +57,12 @@ export const getTodoError = (err) => {
   return {
     type: GET_TODO_ERROR,
     payload: err,
+  };
+};
+
+export const toggleTodoSucces = (id) => {
+  return {
+    type: TOGGLE_TODO,
+    id,
   };
 };
