@@ -1,0 +1,25 @@
+.todolist {
+  display: flex;
+  gap: 20%;
+  justify-content: center;
+}
+.home {
+  display: flex;
+  gap: 20%;
+  justify-content: center;
+}
+
+.listOfTodo {
+  display: flex;
+  gap: 2%;
+  justify-content: center;
+  border: 1px solid black;
+}
+.oneTodo {
+  width: 20%;
+}
+.btn {
+  width: 100px;
+  margin-top: 10px;
+  height: 40px;
+}
