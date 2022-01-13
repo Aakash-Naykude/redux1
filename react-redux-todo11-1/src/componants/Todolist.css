@@ -23,3 +23,10 @@
   margin-top: 10px;
   height: 40px;
 }
+#editCont {
+  height: 120px;
+  width: 60%;
+  margin-left: 20%;
+  border: 1px solid black;
+  display: none;
+}

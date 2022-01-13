@@ -2,6 +2,7 @@ import {
   ADD_TODO_ERROR,
   ADD_TODO_LOADING,
   ADD_TODO_SUCCESS,
+  EDIT_TODO,
   GET_TODO_ERROR,
   GET_TODO_LOADING,
   GET_TODO_SUCCESS,
@@ -64,5 +65,13 @@ export const toggleTodoSucces = (id) => {
 export const toggleTodoLoading = () => {
   return {
     type: TOGGLE_TODO_LOADING,
+  };
+};
+
+export const editTodoFrom = (data, id) => {
+  return {
+    type: EDIT_TODO,
+    payload: data,
+    id: id,
   };
 };

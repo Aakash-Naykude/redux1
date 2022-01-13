@@ -2,6 +2,7 @@ import {
   ADD_TODO_ERROR,
   ADD_TODO_LOADING,
   ADD_TODO_SUCCESS,
+  EDIT_TODO,
   GET_TODO_ERROR,
   GET_TODO_LOADING,
   GET_TODO_SUCCESS,
@@ -14,7 +15,7 @@ import {
 const init = {
   todos: [],
 };
-export const reducer = (state = init, { type, payload }) => {
+export const reducer = (state = init, { type, payload, id }) => {
   switch (type) {
     case ADD_TODO_LOADING:
       return {
@@ -71,6 +72,10 @@ export const reducer = (state = init, { type, payload }) => {
     case TOGGLE_TODO_LOADING:
       return { ...state, loading: true };
 
+    case EDIT_TODO:
+      return state.todos.map((todo) =>
+        todo.id === id ? (todo.title = payload) : todo
+      );
     default:
       return state;
   }
